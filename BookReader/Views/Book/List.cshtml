@@ -1,0 +1,53 @@
+﻿@model List<BookReader.Models.Book>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "List";
+}
+<h1>List of Books</h1>
+
+<form class="form-inline my-2 my-lg-0 search_area" action="/Book/List" method="get">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search" value="@Request.QueryString["search"]">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+</form>
+<div class="link-new">
+    <a class="btn btn-primary" href="/Book/Create">Add New Book</a>
+</div>
+<div class="total_count">
+    Total Books: <span>@Model.Count().ToString()</span>
+</div>
+<ul class="listpage table">
+
+        <li class="table-primary">
+            <div><a href="List?search=@Request.QueryString["search"]">Title</a></div>
+            <div>Description</div>
+            <div><a href="List?search=@Request.QueryString["search"]&sortOrder=author">Author</a></div>
+            <div><a href="List?search=@Request.QueryString["search"]&sortOrder=publish">Publish Date</a></div>
+            <div>Action</div>
+        </li>
+  
+   
+
+        @foreach (var item in Model)
+        {
+            <li>             
+                <div>@item.BookTitle</div>
+                <div>@item.BookDescrp</div>
+                <div>@item.BookAuthor</div>
+                <div>@item.BookPublish.ToString("MMM yyyy")</div>
+                <div>
+                    <a href="/Book/Update/@item.BookId"><img src="https://img.icons8.com/windows/32/000000/edit.png">Update</a>
+                    <a href="/Book/Details/@item.BookId"><img src="https://img.icons8.com/windows/32/000000/visible.png">Details</a>
+                    <a href="/Book/Delete/@item.BookId"><img src="https://img.icons8.com/windows/32/000000/delete-forever.png">Delete</a>
+                </div>
+            </li>
+            
+        }
+ 
+</ul>
+
+
+
+@*@Html.PagedListPager(Model , page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

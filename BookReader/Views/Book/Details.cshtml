@@ -1,0 +1,129 @@
+﻿@model BookReader.Models.ViewModels.DetailsBook
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="back_link_top">
+    <a href="/Book/List">&lt; &lt;Back to List</a>
+</div>
+<div>
+
+
+    <h1>Book Details</h1>
+    <ul class="show_item">
+
+        <li>
+            <label>Title:</label>
+            <div>@Model.Book.BookAuthor</div>
+        </li>
+        <li>
+            <label>Description:</label>
+            <div>@Model.Book.BookDescrp</div>
+        </li>
+        <li>
+            <label>Author:</label>
+            <div>@Model.Book.BookAuthor</div>
+        </li>
+        <li>
+            <label>Publish:</label>
+            <div>@Model.Book.BookPublish.ToString("MMMM yyyy")</div>
+        </li>
+
+    </ul>
+    <a href="/Book/Update/@Model.Book.BookId" class="btn btn-primary">Update</a>
+    <a href="/Book/Delete/@Model.Book.BookId" class="btn btn-primary">Delete</a>
+
+
+
+</div>
+
+
+<div class="info bottom">
+    <h2>Readers who Read the Book</h2>
+    <form method="POST" action="/Book/DeleteReader/@Model.Book.BookId">
+        <ul>
+            <li>
+                <div>Reader Name</div>
+                <div>
+                    <input id="All_ReaderDelete"type="checkbox" name="All_ReaderDelete" value="" />
+                    <label for="All_ReaderDelete">Select All</label>
+                </div>
+            </li>
+            @foreach (var item in Model.Readers)
+            {
+                <li>
+                    @*<label>Name:</label>*@
+                    <div>@item.ReaderFname @item.ReaderLname</div>
+                    <div>
+                        <input type="checkbox" name="ReaderDelete" value="@item.ReaderId" />
+                    </div>
+                </li>
+            }
+
+        </ul>
+        <button type="submit" value="deleteReader" class="btn btn-danger"><img src="https://img.icons8.com/windows/32/000000/delete-forever.png">Delete Reader</button>
+    </form>
+
+       
+</div>
+
+<div class="top-right info">
+    <h2>List of Readers</h2>
+    <form method="POST" action="/Book/AddReader/@Model.Book.BookId" class=" scrollbar scrollbar-primary">
+
+        <ul>
+            <li>
+                <div>Reader Name</div>
+                <div>
+                    <input id="All_ReaderAdd" type="checkbox" name="All_ReaderAdd" value="" />
+                    <label for="All_ReaderAdd">Select All</label>
+                </div>
+
+            </li>
+            @foreach (var item in Model.NotReaders)
+            {
+                <li>
+
+                    <div>@item.ReaderFname @item.ReaderLname</div>
+                    <div>
+                        <input type="checkbox" name="ReaderAdd" value="@item.ReaderId" />
+
+                    </div>
+                </li>
+            }
+
+        </ul>
+        <button type="submit" value="addReader" class="btn btn-success"><img src="https://img.icons8.com/windows/32/000000/add.png">Add Reader</button>
+    </form>
+</div>
+<script>
+
+    allcheck('input[name="All_ReaderDelete"]', 'input[name="ReaderDelete"]');
+    allcheck('input[name="All_ReaderAdd"]', 'input[name="ReaderAdd"]');
+
+    
+
+
+    //window.onload = function () {
+    //    var allAdd = document.getElementsByName('All_readerAddId');
+    //    var add = document.getElementsByName('ReaderAddId');
+
+    //    allAdd[0].addEventListener('click', function () {
+    //        if (this.checked) {
+    //            console.log("checked");
+    //            for (var i = 0; i < add.length; i++) {
+    //                console.log("checked each");
+    //                add[i].checked = true;
+    //            }
+    //        } else {
+    //            console.log("not checking each");
+    //            for (var i = 0; i < add.length; i++) {
+    //                add[i].checked = false;
+    //            }
+    //        }
+            
+    //    });
+    //}
+
+</script>

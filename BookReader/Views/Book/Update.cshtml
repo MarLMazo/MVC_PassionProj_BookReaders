@@ -1,0 +1,91 @@
+﻿@model BookReader.Models.Book
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<div class="back_link_top">
+    <a href="/Book/List">&lt; &lt;Back to List</a>
+</div>
+
+<h2>Update Book</h2>
+
+
+<form action="/Book/Update/@Model.BookId" method="post">
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="BookTitle">Title:</label>
+        </div>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="BookTitle" name="BookTitle" type="text" value="@Model.BookTitle">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="BookDescrp">Description:</label>
+        </div>
+
+        <div class="col-md-10">
+            <textarea class="form-control text-box single-line" id="BookDescrp" name="BookDescrp" rows="8">@Model.BookDescrp</textarea>
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="BookAuthor">Author:</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="BookAuthor" name="BookAuthor" type="text" value="@Model.BookAuthor">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="BookPublish">Published Date:</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="BookPublish" name="BookPublish" type="date" value="@Model.BookPublish.ToShortDateString()">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" value="Update" class="btn btn-success">Update</button>
+    </div>
+
+</form>
+
+<script>
+     //"use strict";
+    var validchar = /^(\s*[a-z]\s*)+$/i;
+    var error = document.getElementsByClassName('invalid-feedback');
+
+    var form = document.forms[0];
+
+    form.onsubmit = function () {
+        
+        //console.log("This is clicked
+        var value = [];
+        //validationForm('input[name="BookTitle"]', validtitle, error[0]);
+        value.push(validationForm('input[name="BookTitle"]', error[0], validchar));
+        value.push(validationForm('textarea[name="BookDescrp"]', error[1]));
+        value.push(validationForm('input[name="BookAuthor"]', error[2], validchar));
+        value.push(validationForm('input[name="BookPublish"]', error[3]));
+        //console.log(value);
+
+        //Check all the values in an array if NOT all is true, return false
+        if (!value.every(s=> s=== true)) {
+            return false;
+        }
+
+    }
+
+        //Main script is on Scripts/main.js
+</script>

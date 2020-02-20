@@ -1,0 +1,104 @@
+﻿@model BookReader.Models.Book
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="back_link_top">
+    <a href="/Book/List">&lt; &lt;Back to List</a>
+</div>
+
+<h2>Add New Book</h2>
+
+
+<form action="/Book/Create" method="post">
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="BookTitle">Title:</label>
+        </div>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="BookTitle" name="BookTitle" type="text">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="BookDescrp">Description:</label>
+        </div>
+
+        <div class="col-md-10">
+            <textarea class="form-control single-line" data-val="true" data-val-required="Description is required" id="BookDescrp" name="BookDescrp" rows="8" value="wqewqew"></textarea>
+            <span class="invalid-feedback"></span>
+        </div>
+     
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="BookAuthor">Author:</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-required="Author is required" id="BookAuthor" name="BookAuthor" type="text" value="">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="BookPublish">Published Date:</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="BookPublish" name="BookPublish" type="date" value="">
+            <span class="invalid-feedback"></span>
+        </div>
+    
+
+
+
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" value="Create" class="btn btn-primary">Add New Book</button>
+    </div>
+
+</form>
+
+
+<script>
+    //"use strict";
+    var validchar = /^(\s*[a-z]\s*)+$/i;
+    var error = document.getElementsByClassName('invalid-feedback');
+
+    var form = document.forms[0];
+
+    form.onsubmit = function () {
+
+        //console.log("This is clicked
+        var value = [];
+        //validationForm('input[name="BookTitle"]', validtitle, error[0]);
+        //return only values true or false
+        value.push(validationForm('input[name="BookTitle"]', error[0], validchar));
+        value.push(validationForm('textarea[name="BookDescrp"]', error[1]));
+        value.push(validationForm('input[name="BookAuthor"]', error[2], validchar));
+        value.push(validationForm('input[name="BookPublish"]', error[3]));
+        //console.log(value);
+
+        //Check all the values in an array if NOT all is true, return false
+   
+        if (!value.every(s => s === true)) {
+            return false;
+        }
+
+        /*
+         * Arrow function is similar to this function
+        function ABC(param) {
+            return param === true;
+        }*/
+    }
+     //Main script is on Scripts/main.js
+</script>

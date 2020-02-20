@@ -1,0 +1,93 @@
+﻿@model BookReader.Models.Reader
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<div class="back_link_top">
+    <a href="/Reader/List">&lt; &lt;Back to List</a>
+</div>
+
+<h2>Update Reader</h2>
+
+
+<form action="/Reader/Update/@Model.ReaderId" method="post">
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="ReaderTitle">First Name:</label>
+        </div>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="ReaderFname" name="ReaderFname" type="text" value="@Model.ReaderFname">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="ReaderDescrp">Last Name:</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="ReaderLname" name="ReaderLname" type="text" value="@Model.ReaderLname">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="ReaderAuthor">Address:</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="ReaderAddress" name="ReaderAddress" type="text" value="@Model.ReaderAddress">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="ReaderAuthor">Phone:</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="ReaderPhone" name="ReaderPhone" type="text" value="@Model.ReaderPhone">
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" value="Update" class="btn btn-success">Update</button>
+    </div>
+
+</form>
+
+
+<script>
+      //"use strict";
+    var validchar = /^(\s*[a-z]\s*)+$/i;
+    var validphone = /^[\d]{10}$/;
+    var validAdd = /^[0-9]+(\s*\w+\s*)+$/i;
+    var error = document.getElementsByClassName('invalid-feedback');
+
+    var form = document.forms[0];
+
+    form.onsubmit = function () {
+       
+        //console.log("This is clicked)
+        var value = [];
+        //values are push to array to check later
+        value.push(validationForm('input[name="ReaderFname"]', error[0], validchar));
+        value.push(validationForm('input[name="ReaderLname"]', error[1],validchar));
+        value.push(validationForm('input[name="ReaderAddress"]', error[2], validAdd));
+        value.push(validationForm('input[name="ReaderPhone"]', error[3], validphone));
+        //console.log(value);
+
+        //Check all the values in an array if NOT all is true, return false
+        if (!value.every(s=> s=== true)) {
+            return false;
+        }
+
+    }
+        //Main script is on Scripts/main.js
+</script>

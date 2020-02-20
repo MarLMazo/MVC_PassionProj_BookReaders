@@ -1,0 +1,107 @@
+﻿@model BookReader.Models.ViewModels.DetailsReader
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="back_link_top">
+    <a href="/Reader/List">&lt; &lt;Back to List</a>
+</div>
+
+<div>
+    <h1>Reader Details</h1>
+    <ul class="show_item">
+
+        <li>
+            <label>First Name:</label>
+            <div>@Model.Reader.ReaderFname</div>
+        </li>
+        <li>
+            <label>Last Name:</label>
+            <div>@Model.Reader.ReaderLname</div>
+        </li>
+        <li>
+            <label>Address:</label>
+            <div>@Model.Reader.ReaderAddress</div>
+        </li>
+        <li>
+            <label>Phone:</label>
+            <div>@String.Format("{0:(###) ###-####}", @Model.Reader.ReaderPhone)</div>
+        </li>
+
+    </ul>
+    <a href="/Reader/Update/@Model.Reader.ReaderId" class="btn btn-primary"> Update</a>
+    <a href="/Reader/Delete/@Model.Reader.ReaderId" class="btn btn-primary"> Delete</a>
+
+
+</div>
+<div class="info bottom">
+    <h2>Books Finished Reading</h2>
+    <form method="POST" action="/Reader/DeleteBook/@Model.Reader.ReaderId">
+        <ul>
+            <li>
+                <div>Book Title</div>
+                <div>
+                    <input id="All_BookDelete"type="checkbox" name="All_BookDelete" value="" />
+                    <label for="All_BookDelete">Select All</label>
+                </div>
+            </li>
+            @foreach (var item in Model.Books)
+            {
+                <li>
+                  
+                    <div>@item.BookTitle</div>
+                    <div>
+                        @*Creating a button on each Listing of Books
+                            <form method="POST" action="/Reader/deleteBook/@Model.Reader.ReaderId">
+                            <input type="text" name="BookId" value="@item.BookId" style="display:none;" />
+                            <button type="submit" value="deleteBook" class="btn btn-danger"><img src="https://img.icons8.com/windows/32/000000/delete-forever.png">Delete</button>
+                        </form>*@
+                        <input type="checkbox" name="BookDelete" value="@item.BookId" />
+
+                    </div>
+                </li>
+            }
+
+
+        </ul>
+        <button type="submit" value="deleteBook" class="btn btn-danger"><img src="https://img.icons8.com/windows/32/000000/delete-forever.png">Delete Book</button>
+    </form>
+</div>
+
+<div class="top-right info">
+    <h2>List of Books to Read</h2>
+    <form method="POST" action="/Reader/AddBook/@Model.Reader.ReaderId">
+        <ul>
+            <li>
+                <div>Book Title</div>
+                <div>
+                    <input type="checkbox" name="All_BookAdd" id="All_BookAdd" value="" />
+                    <label for="All_BookAdd">Select All</label>
+                </div>
+            </li>
+            @foreach (var item in Model.notreadBooks)
+            {
+                <li>
+                    <div>@item.BookTitle</div>
+                    <div>
+                        @*Updating my work to create checkbox on each and get one submission instead of having multiple forms on each value
+                            <form method="POST" action="/Reader/addBook/@Model.Reader.ReaderId">
+                            <input type="text" name="BookId" value="@item.BookId" style="display:none;" />
+                            <button  type="submit" value="addBook" class="btn btn-success"><img src="https://img.icons8.com/windows/32/000000/add.png">ADD</button>
+                        </form>*@
+                        <input type="checkbox" name="BookAdd" value="@item.BookId"  />
+                    </div>
+                </li>
+            }
+
+        </ul>
+        <button type="submit" value="addBook" class="btn btn-success"><img src="https://img.icons8.com/windows/32/000000/add.png">Add Book</button>
+    </form>
+</div>
+
+<script>
+
+    allcheck('input[name="All_BookDelete"]', 'input[name="BookDelete"]');
+    allcheck('input[name="All_BookAdd"]', 'input[name="BookAdd"]');
+</script>

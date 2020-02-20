@@ -1,0 +1,233 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+body {
+    padding-bottom: 20px;
+    font-family: "Raleway", "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+ul, ol, li {
+    list-style: none;
+}
+
+ul {
+    padding: 0;
+}
+h1{
+    padding: 0.5em 0;
+    font-size: 2em;
+    font-weight: bolder;
+}
+h2 {
+    padding: 0.5em 0;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+.navbar-brand img{
+    height: 2.75em;
+    width: 2.75em;
+
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.form-control:focus{
+    color: #000000;
+}
+table, .link-new{
+    margin: 1em 0;
+}
+
+.total_count span{
+    font-weight:bolder;
+    font-size: 1.25em;
+}
+
+
+.container{
+    position:relative;
+}
+.main-content{
+    width: 50%;
+}
+
+button img, a img {
+    width: 20px;
+    height: 20px;
+    Color: #0f7864;
+}
+
+.listpage a {
+    display: block;
+    text-align: center;
+}
+.listpage li div{
+    text-align:center;
+    display: inline-block;
+    width: 18%;
+ 
+}
+.listpage li {
+    display: flex;
+    align-items: center;
+    background-color: #95a5a6;
+   
+    padding: 0.5em;
+}
+.listpage li div {
+    overflow: hidden;
+    max-height: 6em;
+}
+
+.listpage li:nth-child(odd) {
+    background-color: #ecf0f1;
+}
+.listpage li a {
+    color: #2C3E50;
+}
+.listpage li:hover {
+    color: #000;
+    background-color: #22e0bb;
+}
+.listpage li:first-child {
+    background-color: #2C3E50;
+    padding: 1em 0.1em;
+}
+.listpage li:first-child a {
+    color: #18BC9C;
+}
+
+
+label {
+    font-weight: bolder;
+}
+.alert-msg{
+    color:red;
+}
+
+.admin_maincont {
+    width: 70%;
+    padding: 0.5em;
+}
+.content_summary li {
+    border-bottom: 1px solid #3498DB;
+    position: relative;
+}
+.content_summary{
+    margin-bottom: 4em;
+}
+.content_summary a:nth-child(n){
+   display:inline-block;
+   width: 20%;
+}
+.content_summary a:first-child{
+   display:inline-block;
+   width: 60%;
+}
+.content_summary a img{
+    width: 32px;
+    height: 32px;
+    display:inline-block;
+}
+.content_summary li, .table-info{
+    padding: 0.5em;
+}
+
+
+/**Show*/
+
+.show_item{
+    width: 50%;
+}
+
+.show_item li {
+    display: block;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #95a5a6;
+}
+.show_item label, .show_item div{
+    display:inline-block;
+}
+
+.show_item label{
+    font-size:1.25em;
+    padding-right: 0.5em;
+    
+    width: 30%;
+}
+.show_item div {
+    width: 60%;
+}
+.alert-msg{
+    font-size: 1.25em;
+}
+
+/**DEtails Info*/
+.info{
+    width: 50%;
+}
+.info li>*{
+   
+    display:inline-block;
+}
+
+.info li div {
+    width: 49%;
+}
+.info li:first-of-type {
+    font-weight: bolder;
+}
+
+.info li{
+    padding: 1em;
+    border-bottom: 1px solid #95a5a6;
+}
+.info.bottom{
+    margin-top:2em;
+}
+
+/*Back Link*/
+.back_link_top{
+    margin: 1em 0;
+    font-size: 1.25em;
+}
+
+/** TOP-right **/
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30% !important;
+    
+}
+
+.top-right ul {
+    height: 50vh;
+    overflow-y: scroll;
+    border-bottom: 2px outset #95a5a6;
+}
+
+/**Search area*/
+.search_area{
+    float:right;
+}

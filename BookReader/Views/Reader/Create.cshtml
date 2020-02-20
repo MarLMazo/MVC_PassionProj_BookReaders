@@ -1,0 +1,94 @@
+﻿@model BookReader.Models.Reader
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="back_link_top">
+    <a href="/Reader/List">&lt; &lt;Back to List</a>
+</div>
+<h2>Create New Reader</h2>
+
+
+<form action="/Reader/Create" method="post">
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="ReaderFname">First Name</label>
+        </div>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="ReaderFname" name="ReaderFname" type="text" placeholder="ex. John"/>
+            <span class="invalid-feedback"></span>
+        </div>
+    
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="ReaderLname">Last Name</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="ReaderLname" name="ReaderLname" type="text"  placeholder="ex. Smith"/>
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="ReaderAddress">Address</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="ReaderAddress" name="ReaderAddress" type="text"  placeholder="ex. 12 Avenue Road" />
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label class="control-label col-md-2" for="ReaderPhone">Phone</label>
+        </div>
+
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="ReaderPhone" name="ReaderPhone" type="text" placeholder="111-111-1111"/>
+            <span class="invalid-feedback"></span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+
+</form>
+
+<script>
+     //"use strict";
+    //Get all validation
+    var validchar = /^(\s*[a-z]\s*)+$/i;
+    var validphone = /^[\d]{10}$/;
+    var validAdd = /^[0-9]+(\s*\w+\s*)+$/i;
+    var error = document.getElementsByClassName('invalid-feedback');
+
+    var form = document.forms[0];
+
+    form.onsubmit = function () {
+        
+        //console.log("This is clicked
+        var value = [];
+        //values are push to array to check later
+        value.push(validationForm('input[name="ReaderFname"]', error[0], validchar));
+        value.push(validationForm('input[name="ReaderLname"]', error[1]));
+        value.push(validationForm('input[name="ReaderAddress"]', error[2], validAdd));
+        value.push(validationForm('input[name="ReaderPhone"]', error[3], validphone));
+        //console.log(value);
+
+        //Check all the values in an array if NOT all is true, return false
+        if (!value.every(s=> s=== true)) {
+            return false;
+        }
+
+    }
+    //Main script is on Scripts/main.js
+</script>

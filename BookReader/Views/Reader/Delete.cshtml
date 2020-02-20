@@ -1,0 +1,42 @@
+﻿@model BookReader.Models.Reader
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="back_link_top">
+    <a href="/Reader/List">&lt; &lt;Back to List</a>
+</div>
+
+<h1>Delete Reader</h1>
+
+<p class="alert-msg">Are you sure you want to <strong>DELETE</strong> this Reader?</p>
+
+
+<ul class="show_item">
+   
+    <li>
+        <label>First Name:</label>
+        <div>@Model.ReaderFname</div>
+    </li>
+    <li>
+        <label>Last Name:</label>
+        <div>@Model.ReaderLname</div>
+    </li>
+    <li>
+        <label>Address:</label>
+        <div>@Model.ReaderAddress</div>
+    </li>
+    <li>
+        <label>Phone:</label>
+        <div>@String.Format("{0:(###) ###-####}", Model.ReaderPhone)</div>
+    </li>
+
+ 
+</ul>
+
+<form action="/Reader/Delete/@Model.ReaderId" method="post">
+
+    <button type="submit" class="btn btn-danger">Delete </button>
+   
+
+</form>
